@@ -1,0 +1,22 @@
+{
+  "name": "allomediagroup-sitevitrine",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "react-router-dom": "^6.26.2",
+    "tw-elements-react": "^1.0.0-alpha-end"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react-swc": "^3.7.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "vite": "^5.4.8"
+  },
+  "type": "module"
+}
