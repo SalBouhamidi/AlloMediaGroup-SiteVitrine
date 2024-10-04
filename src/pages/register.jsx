@@ -43,6 +43,7 @@ export default function register() {
                                         I accept the <a href="javascript:void(0);" className="text-lime-400 font-semibold hover:underline ml-1">Terms and Conditions</a>
                                     </label>
                                 </div>
+                                
                             </div>
 
                             <div className="!mt-12">
