@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
+import  {useForm}  from "react-hook-form";
+import * as yup from "yup";
+import axios from "axios";
+import  {yupResolver}  from "@hookform/resolvers/yup";
 
 export default function login() {
+    const initialvalues = {
+        email: '',
+        password: ''
+
+    }
+
+
     return (
         <>
             <main className=" h-[100vh] flex justify-center items-center ">
