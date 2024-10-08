@@ -6,6 +6,7 @@ import {Register} from "../pages/register"
 import ResetPassword from "../pages/resetpassword"
 import Layout from "../pages/Layouts/layout"
 import ForgetPassword from "../pages/forgetPassword"
+import VerificationOTP from "../pages/verificationOTP";
 
 const router =createBrowserRouter([
     {
@@ -19,9 +20,7 @@ const router =createBrowserRouter([
             element: <p>pqge not found</p>
     
         }
-
-            
-
+  
         ]
     },
 
@@ -40,7 +39,10 @@ const router =createBrowserRouter([
     {
         path: "/resetpassword",
         element: <ResetPassword/>, 
-    }, 
+    },{
+        path: "/verify-email/:id/:otp",
+        element: <VerificationOTP/>
+    }
 
 
 ]);
