@@ -83,7 +83,7 @@ function Login() {
                                             </label>
                                         </div>
                                         <div className="text-sm">
-                                            <Link to="/forgetPassword" className="text-lime-400 hover:underline font-semibold" >Forgot your password?</Link>
+                                            <Link to="/forgetPassword" data-cy-forgetPassword="forgetpassword" className="text-lime-400 hover:underline font-semibold" >Forgot your password?</Link>
                                         </div>
                                     </div>
 
