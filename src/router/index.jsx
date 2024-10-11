@@ -1,11 +1,12 @@
 
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/home"
-import Login from "../pages/login"
-import Register from "../pages/register"
+import {Login} from "../pages/login"
+import {Register} from "../pages/register"
 import ResetPassword from "../pages/resetpassword"
 import Layout from "../pages/Layouts/layout"
 import ForgetPassword from "../pages/forgetPassword"
+import VerificationOTP from "../pages/verificationOTP";
 
 const router =createBrowserRouter([
     {
@@ -19,15 +20,13 @@ const router =createBrowserRouter([
             element: <p>pqge not found</p>
     
         }
-
-            
-
+  
         ]
     },
 
     {
         path:'/register',
-        element: <Register/>,
+        element: <Register />,
     },
     {
         path: "/login",
@@ -38,9 +37,12 @@ const router =createBrowserRouter([
         element: <ForgetPassword/>
     },
     {
-        path: "/resetpassword",
+        path: "/resetpassword/:id/:token",
         element: <ResetPassword/>, 
-    }, 
+    },{
+        path: "/verify-email/:id/:otp",
+        element: <VerificationOTP/>
+    }
 
 
 ]);
