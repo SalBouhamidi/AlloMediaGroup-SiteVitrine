@@ -73,16 +73,19 @@ export default function verificationOTP() {
                                         <div className="flex flex-col space-y-16">
                                             <div className="flex flex-row items-center justify-between mx-auto w-full max-w-xs">
                                                 <div className="w-16 h-16 ">
-                                                    <input onChange={(e) => setfirstNumber(e.target.value)} className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-lime-400" type="text" name="firstNumber" id="firstNumber" />
+                                                    <input onChange={(e) => setfirstNumber(e.target.value)} required pattern="[0-9]" maxLength={1} className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-lime-400" type="text" name="firstNumber" id="firstNumber" />
                                                 </div>
+                                                <span>-</span>
                                                 <div className="w-16 h-16 ">
-                                                    <input onChange={(e) => setsecondNumber(e.target.value)} className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-lime-400" type="text" name="secondNumber" id="secondNumber" />
+                                                    <input onChange={(e) => setsecondNumber(e.target.value)} required pattern="[0-9]" maxLength={1} className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-lime-400" type="text" name="secondNumber" id="secondNumber" />
                                                 </div>
+                                                <span>-</span>
                                                 <div className="w-16 h-16 ">
-                                                    <input onChange={(e) => setthirdNumber(e.target.value)} className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-lime-400" type="text" name="thirdNumber" id="thirdNumber" />
+                                                    <input onChange={(e) => setthirdNumber(e.target.value)} required pattern="[0-9]" maxLength={1} className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-lime-400" type="text" name="thirdNumber" id="thirdNumber" />
                                                 </div>
+                                                <span>-</span>
                                                 <div className="w-16 h-16 ">
-                                                    <input onChange={(e) => setfourNumber(e.target.value)} className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-lime-400" type="text" name="fourNumber" id="fourNumber" />
+                                                    <input onChange={(e) => setfourNumber(e.target.value)} required pattern="[0-9]" maxLength={1} className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-lime-400" type="text" name="fourNumber" id="fourNumber" />
                                                 </div>
                                             </div>
 
