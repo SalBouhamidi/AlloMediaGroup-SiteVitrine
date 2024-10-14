@@ -7,6 +7,7 @@ import ResetPassword from "../pages/resetpassword"
 import Layout from "../pages/Layouts/layout"
 import ForgetPassword from "../pages/forgetPassword"
 import VerificationOTP from "../pages/verificationOTP";
+import EmailVerification from "../pages/emailVerification";
 
 const router =createBrowserRouter([
     {
@@ -42,6 +43,9 @@ const router =createBrowserRouter([
     },{
         path: "/verify-email/:id/:otp",
         element: <VerificationOTP/>
+    },{
+        path: "/verify/:userId/:token",
+        element: <EmailVerification/>
     }
 
 

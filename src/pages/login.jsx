@@ -3,6 +3,7 @@ import  {useForm}  from "react-hook-form";
 import * as yup from "yup";
 import axios from "axios";
 import  {yupResolver}  from "@hookform/resolvers/yup";
+import {toast} from 'sonner';
 
 function Login() {
     const initialvalues = {
@@ -21,20 +22,22 @@ function Login() {
     })
 
     async function handleLogin(data){
-        // console.log('i m here ')
         try{
             const response = await axios.post('http://localhost:3000/api/auth/login', data);
+            // console.log('jdjdjdjdj',response);
             if(response){
+                toast.success('You logged in successfully. Check your email for the OTP code.');
                 console.log('data response', response.data)
             }else{
-                console.log('response does not come', response.data)
+                console.log('no response', response)
             }
 
         }catch(e){
             if(e.status == 401){
-                console.log('Credentials are not valid')
+                toast.error('Credentials are not valid')
             }else{
-                console.log('smth bad happend', e)
+                console.log('errpr of login', e)
+                toast.error('smth bad happend')
 
             }
         }
@@ -83,7 +86,7 @@ function Login() {
                                             </label>
                                         </div>
                                         <div className="text-sm">
-                                            <Link to="/forgetPassword" data-cy-forgetPassword="forgetpassword" className="text-lime-400 hover:underline font-semibold" >Forgot your password?</Link>
+                                            <Link to="/forgetPassword" data-cy-forgetpassword="forgetpassword" className="text-lime-400 hover:underline font-semibold" >Forgot your password?</Link>
                                         </div>
                                     </div>
 

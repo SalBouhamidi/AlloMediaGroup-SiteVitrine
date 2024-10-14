@@ -1,38 +1,29 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from "axios";
+import {toast} from "sonner"
+import { useNavigate } from 'react-router-dom';
+
 
 
 
 export default function verificationOTP() {
+    const navigate = useNavigate();
     let urlparams = useParams();
     const [firstNumber, setfirstNumber] = useState('');
     const [secondNumber, setsecondNumber] = useState('');
     const [thirdNumber, setthirdNumber] = useState('');
     const [fourNumber, setfourNumber] = useState('');
-    const [message, setMessage] = useState('');
-    const [otpError, setOtpError] = useState(null);
-
-
-
     async function handleOTP(e) {
-        // console.log(urlparams);
         e.preventDefault();
         let otpcode = `${firstNumber}${secondNumber}${thirdNumber}${fourNumber}`;
-        // console.log(urlparams.otp);
-        // console.log('url parameeee',code);
-        // console.log('url parameeee encoded',atob(urlparams.otp));
-        // console.log(optcode);
-
         try {
-            console.log('user id', urlparams.id)
             let results = await axios.post(`http://localhost:3000/api/auth/verify-otp/${urlparams.id}/${urlparams.otp}`, { otpcode });
-            setMessage(results.request.response);
-            console.log(results.request.response)
+            toast.success(results.request.response);
+            // navigate('/home');
         } catch (err) {
             console.log('there\'s an error in otp', err);
-            console.log('there\'s an error in otp', err.request.response);
-
+            toast.error(err.request.response)
         }
     }
 

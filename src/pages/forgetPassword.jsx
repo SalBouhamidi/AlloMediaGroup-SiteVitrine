@@ -1,14 +1,23 @@
 import axios from "axios"
 import { useState } from 'react';
+import {toast} from 'sonner'
+import { useEmail } from './emailContext'
 
 export default function forgetPassword() {
-    const[email, setEmail]= useState('');
+    const { setEmail } = useEmail();
+    const[email, setEmailInput]= useState('');
 
     async function handleEmail(e){
         e.preventDefault();
-        console.log(email);
+        setEmail(email);
+        // console.log(email);
         let response = await axios.post(`http://localhost:3000/api/auth/forgetpassword`, {email});
-        console.log(response.data);
+        if(response){
+            toast.success(response.data.message);
+        }else{
+            toast.error('Smth Went wrong please try again')
+        }
+        // console.log(response.data.message);
     }
     return (
         <>
@@ -20,7 +29,7 @@ export default function forgetPassword() {
                             <div className="flex flex-col space-y-5">
                                 <label htmlFor="email">
                                     <p className="font-medium text-slate-700 pb-2">Email address</p>
-                                    <input id="email" name="email" type="email" value={email} onChange={(e)=>setEmail(e.target.value)} className="w-full py-3 border border-lime-400 rounded-lg px-3 focus:outline-none focus:border-lime-400 hover:shadow" placeholder="Enter email address" />
+                                    <input id="email" name="email" type="email" value={email} onChange={(e)=>setEmailInput(e.target.value)} className="w-full py-3 border border-lime-400 rounded-lg px-3 focus:outline-none focus:border-lime-400 hover:shadow" placeholder="Enter email address" />
                                 </label>
                                 <button type="submit" className="w-full py-3 font-medium text-white bg-lime-400 hover:bg-lime-300 rounded-lg border-lime-400 hover:shadow inline-flex space-x-2 items-center justify-center">
                                     Reset password
