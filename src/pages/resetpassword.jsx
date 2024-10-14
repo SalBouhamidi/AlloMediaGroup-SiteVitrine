@@ -13,7 +13,6 @@ export default function resetpassword() {
 
     async function handleResetPassword(e){
         e.preventDefault();
-        // console.log('****', password);
         if(password !== confirmPassword){
             console.log('The password is not confirmed');
             toast.error('passwords do not match')

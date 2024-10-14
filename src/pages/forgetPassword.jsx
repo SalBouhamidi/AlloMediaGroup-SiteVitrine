@@ -10,14 +10,20 @@ export default function forgetPassword() {
     async function handleEmail(e){
         e.preventDefault();
         setEmail(email);
-        // console.log(email);
-        let response = await axios.post(`http://localhost:3000/api/auth/forgetpassword`, {email});
-        if(response){
-            toast.success(response.data.message);
-        }else{
-            toast.error('Smth Went wrong please try again')
+        try{
+            let response = await axios.post(`http://localhost:3000/api/auth/forgetpassword`, {email});
+            if(response){
+                toast.success(response.data.message);
+            }else{
+                toast.error('Smth Went wrong please try again')
+            }
+        }catch(e){
+            if(e.response.data.message){
+                toast.error(e.response.data.message)
+            }else{
+                console.log('the error is ', e)
+            }
         }
-        // console.log(response.data.message);
     }
     return (
         <>
