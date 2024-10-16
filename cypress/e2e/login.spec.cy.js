@@ -17,7 +17,9 @@ describe('cheking the login functionality', ()=>{
     })
     it('redirect to the reset password page', ()=>{
         cy.visit('http://localhost:5173/login')
-        cy.get('[data-cy-forgetPassword="forgetpassword"]').should('exist').click();
+
+        cy.get('[data-cy-forgetpassword="forgetpassword"]').should('exist').click();
+
         cy.url().should('eq', 'http://localhost:5173/forgetPassword');
     })
     

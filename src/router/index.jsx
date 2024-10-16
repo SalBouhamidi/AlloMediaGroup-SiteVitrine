@@ -7,6 +7,10 @@ import ResetPassword from "../pages/resetpassword"
 import Layout from "../pages/Layouts/layout"
 import ForgetPassword from "../pages/forgetPassword"
 import VerificationOTP from "../pages/verificationOTP";
+import EmailVerification from "../pages/emailVerification";
+import UserProfil from "../pages/userProfil";
+import ProtectedRoute from "../utils/ProtectRouter";
+
 
 const router =createBrowserRouter([
     {
@@ -33,6 +37,10 @@ const router =createBrowserRouter([
         element: <Login/>, 
     },
     {
+        path: '/profil',
+        element:  <ProtectedRoute element={<UserProfil />} />
+    },
+    {
         path: "/forgetPassword",
         element: <ForgetPassword/>
     },
@@ -42,6 +50,9 @@ const router =createBrowserRouter([
     },{
         path: "/verify-email/:id/:otp",
         element: <VerificationOTP/>
+    },{
+        path: "/verify/:userId/:token",
+        element: <EmailVerification/>
     }
 
 
