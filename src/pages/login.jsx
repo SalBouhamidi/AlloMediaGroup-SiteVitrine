@@ -24,12 +24,13 @@ function Login() {
     async function handleLogin(data){
         try{
             const response = await axios.post('http://localhost:3000/api/auth/login', data);
-            // console.log('jdjdjdjdj',response);
             if(response){
                 toast.success('You logged in successfully. Check your email for the OTP code.');
-                console.log('data response', response.data)
+                localStorage.setItem('email', response.data.userFound.email );
+                localStorage.setItem ('name', response.data.userFound.name);
             }else{
-                console.log('no response', response)
+                console.log('no response', response);
+                toast.error('please try to login again')
             }
 
         }catch(e){

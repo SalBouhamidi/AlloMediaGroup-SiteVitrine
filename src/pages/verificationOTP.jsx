@@ -20,7 +20,8 @@ export default function verificationOTP() {
         try {
             let results = await axios.post(`http://localhost:3000/api/auth/verify-otp/${urlparams.id}/${urlparams.otp}`, { otpcode });
             toast.success(results.request.response);
-            // navigate('/home');
+            navigate('/profil');
+
         } catch (err) {
             console.log('there\'s an error in otp', err);
             toast.error(err.request.response)

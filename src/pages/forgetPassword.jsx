@@ -1,15 +1,12 @@
 import axios from "axios"
 import { useState } from 'react';
 import {toast} from 'sonner'
-import { useEmail } from './emailContext'
 
 export default function forgetPassword() {
-    const { setEmail } = useEmail();
     const[email, setEmailInput]= useState('');
 
     async function handleEmail(e){
         e.preventDefault();
-        setEmail(email);
         try{
             let response = await axios.post(`http://localhost:3000/api/auth/forgetpassword`, {email});
             if(response){
