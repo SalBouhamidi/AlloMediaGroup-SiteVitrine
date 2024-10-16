@@ -3,8 +3,13 @@ import  {useForm}  from "react-hook-form";
 import * as yup from "yup";
 import axios from "axios";
 import  {yupResolver}  from "@hookform/resolvers/yup";
+import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
+
+
 
  function Register() {
+    const navigate = useNavigate();
     const initialvalues = {
         name: '',
         email: '',
@@ -26,6 +31,7 @@ import  {yupResolver}  from "@hookform/resolvers/yup";
         defaultValues: initialvalues
     })
 
+
     async function handleRegistration(data){
         data.phone=[{
             countrycode: data.countrycode,
@@ -42,8 +48,14 @@ import  {yupResolver}  from "@hookform/resolvers/yup";
         try {
             const response = await axios.post('http://localhost:3000/api/auth/register', data);
             console.log('date response is ', response.data);
+            toast.success('User registered successfully! Kindly check your email');
+            navigate('/login');
         }catch(error){
-            console.error('smth bad happend ', error);
+            if(error.response && error.response.data){
+                toast.error(error.response.data.message);
+            }else{
+                toast.error('smth bad happend ', error);
+            }
         }
     }
 
@@ -75,7 +87,12 @@ import  {yupResolver}  from "@hookform/resolvers/yup";
                                 <div className="">
                                     <label className="text-gray-800 text-sm mb-2 block ">Phone</label>
                                     <div className="flex !flex-row gap-2">
-                                    <input {...register('countrycode')} name="countrycode" type="text" className="text-gray-800  w-[30%] bg-white border border-gray-300  text-sm px-4 py-3 rounded-md outline-lime-400" placeholder="Country code" /> 
+                                    <select {...register('countrycode')} name="countrycode" type="text" className="text-gray-800  w-[30%] bg-white border border-gray-300  text-sm px-4 py-3 rounded-md outline-lime-400" placeholder="Country code" > 
+                                    <option value="">Select country code</option>
+                                        <option value="+212">+212 (Morocco)</option>
+                                        <option value="+1">+1 (US)</option>
+                                        <option value="+44">+44 (UK)</option>
+                                    </select>
                                     {errors.countrycode && <span className="text-red-500">{errors.countrycode.message}</span>}
                                     <input {...register('phonenumber')} name="phonenumber" type="text" className="text-gray-800  w-[70%] bg-white border border-gray-300  text-sm px-4 py-3 rounded-md outline-lime-400" placeholder="Phone number" /> 
                                     {errors.phonenumber && <span className="text-red-500">{errors.phonenumber.message}</span>}

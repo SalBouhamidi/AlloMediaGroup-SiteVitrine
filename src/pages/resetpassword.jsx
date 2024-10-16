@@ -2,27 +2,31 @@ import {useState} from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import {Link} from 'react-router-dom'
+import {toast} from "sonner"
+import { useNavigate } from "react-router-dom";
 
 export default function resetpassword() {
+    const navigate = useNavigate();
     let urlparams = useParams();
-    // console.log(urlparams.id);
-
     let [password, setPassword] = useState('');
     let [confirmPassword, setconfirmePassword] = useState('');
 
 
     async function handleResetPassword(e){
         e.preventDefault();
-        console.log('****', password);
         if(password !== confirmPassword){
             console.log('The password is not confirmed');
+            toast.error('passwords do not match')
             return;
         }else{
             let response = await axios.post(`http://localhost:3000/api/auth/resetpassword/${urlparams.id}/${urlparams.token}`,{
                 'password': password,
                 'confirmPassword': confirmPassword
             })
+            toast.success('Your password was modified successfully');
             console.log('response is ', response.data.message);
+            navigate('/login');
+
         }
 
     }
@@ -32,7 +36,7 @@ export default function resetpassword() {
             <main className=" h-[100vh] flex justify-center items-center ">
                 <div className="bg-gray-50 font-[sans-serif] w-[70vw]">
                     <div className="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300">
-                        <h1 className="text-4xl font-medium text-center">Reset password</h1>
+                        <h1 className="text-4xl font-medium text-center">Reset password </h1>
                         <form onSubmit={handleResetPassword} className="my-10">
                             <div className="flex flex-col space-y-5">
                                 <div className="relative flex flex-col items-start">
